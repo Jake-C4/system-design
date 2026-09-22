@@ -1,12 +1,12 @@
-# Plan — [Product/Service Name]
+# Plan — TSWizard
 
 > Written after specification. Every decision here must trace back to a requirement ID.
 
 ## 1. Approach Summary
-Plain-language description of how you'll build this (2–4 sentences).
+TSWizard is built on the front-end before the backend. Support agents will be able to search issues or search through their bookmarked issues and see the fixes for them by rank. The issues and the troubleshooting fixes comes from different CSV files so that anything an agent logs as an outcome updates the rankings.
 
 ## 1.5 Tech Stack
-- Frontend:
+- Frontend: No build Vue 3 + Vue Router
 - Backend/DB:
 - Hosting:
 - Other services/APIs:
