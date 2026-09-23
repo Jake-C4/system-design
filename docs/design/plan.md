@@ -26,7 +26,10 @@ List the major pieces (screens, services, data stores). No code — just names a
 
 | Component | Purpose | Related requirements |
 |-----------|---------|------------------------|
-| | | |
+| Issues List | Allow Agents to search issues or bookmark issues | R1 |
+| Issues Details | Shows a list of fixes ranked by number, otherwise unranked if not enough data | R1, R3, R4 |
+| Fix Data | Shows steps for the fix along with how many attempts and the success rate of the fix | R2, R4, R5 |
+| Data Storing | Loads both CSV files and maintains in-memory outcomes logged by agents | R1, R2, R4 |
 
 ## 4. Dependencies & Assumptions
 - External services/tools needed:
