@@ -1,4 +1,4 @@
-# Design System — [Organization/Product Name]
+# Design System — TSWizard
 
 ## 1. Brand Principles
 TSWizard is a a tool used for support agents in order to fix issues more efficiently. Each issue develops fixes in which each fix is ranked in order from most likely to work to least likely to work. The design should be honest and on point when it comes to numbers
@@ -37,7 +37,7 @@ List reusable UI patterns and their rules (e.g. radius, border, etc.).
 | Component | Rules |
 |-----------|-------|
 | Button (primary) | Bootstap button, btn-primary, with no radius or padding that overrides |
-| Button (Log Outcome) | btn-success button for "Successful", btn-failure for "Unsuccessful" |
+| Button (Log Outcome) | btn-success button for "Successful", btn-danger for "Unsuccessful" |
 | Issue Row | Bootstrap list-group-item showing issue name, bookmark icon, and logged outcome badge |
 | Search field | Bootstrap search-control with a placeholder text that says "Search Issues..." |
 | Navigation | Bootstrap navbar showing the TSWizard watermark, bi tools icon, acitve working agent name aligned ot the right |
