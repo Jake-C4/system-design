@@ -1,0 +1,5 @@
+id,issue_id,description,attempts,successes
+sample-fix-1,sample-issue,Placeholder fix description,10,9
+sample-fix-2,sample-issue,Second placeholder fix description,10,7
+sample-fix-3,sample-issue,Third placeholder fix description,10,2
+low-data-fix-1,low-data-issue,Low-data placeholder fix description,2,1
