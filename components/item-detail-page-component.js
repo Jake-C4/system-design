@@ -3,6 +3,18 @@ export default {
   setup() {
     const itemsStore = Vue.inject('itemsStore');
     const route = VueRouter.useRoute();
+    const currentTime = Vue.ref(Date.now());
+    let timeInterval;
+
+    Vue.onMounted(() => {
+      timeInterval = window.setInterval(() => {
+        currentTime.value = Date.now();
+      }, 1000);
+    });
+
+    Vue.onUnmounted(() => {
+      window.clearInterval(timeInterval);
+    });
 
     const selectedItem = Vue.computed(() => {
       return itemsStore.items.find((item) => item.id === route.params.id);
@@ -24,6 +36,27 @@ export default {
       if (successful) {
         fix.successes += 1;
       }
+      fix.recentOutcome = {
+        loggedAt: Date.now(),
+        successful,
+      };
+    };
+
+    const canUndoOutcome = (fix) => {
+      return fix.recentOutcome
+        && currentTime.value - fix.recentOutcome.loggedAt < 5 * 60 * 1000;
+    };
+
+    const undoOutcome = (fix) => {
+      if (!canUndoOutcome(fix)) {
+        return;
+      }
+
+      fix.attempts -= 1;
+      if (fix.recentOutcome.successful) {
+        fix.successes -= 1;
+      }
+      fix.recentOutcome = null;
     };
 
     const totalAttempts = Vue.computed(() => {
@@ -54,6 +87,8 @@ export default {
       hasEnoughData,
       formatSuccessRate,
       logOutcome,
+      canUndoOutcome,
+      undoOutcome,
     };
   },
   template: /* html */ `
@@ -103,6 +138,13 @@ export default {
                     class="btn btn-danger"
                     @click="logOutcome(fix, false)">
                     Unsuccessful
+                  </button>
+                  <button
+                    v-if="canUndoOutcome(fix)"
+                    type="button"
+                    class="btn btn-secondary"
+                    @click="undoOutcome(fix)">
+                    Undo
                   </button>
                 </div>
               </div>

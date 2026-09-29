@@ -11,7 +11,7 @@
 | T3 | Update the detail page to load the selected issue and its related fixes, then display the fixes in ranked order with their attempt count and success rate | R1, R4 | T1 | Done |
 | T4 | Add the "not enough data" state for issues with fewer than 5 logged outcomes while still showing the fix attempt count and the message when historical data is insufficient | R3, R4 | T3 | Done |
 | T5 | Add the outcome logging UI for each fix and update the in-memory fix statistics immediately when an agent marks a result as successful or unsuccessful | R2, R4 | T3 | Done |
-| T6 | Add an undo action for a recent logged outcome within 5 minutes and recalculate the fix ranking immediately when that outcome is removed | R2, R5, ADR-04 | T5 | Not started |
+| T6 | Add an undo action for a recent logged outcome within 5 minutes and recalculate the fix ranking immediately when that outcome is removed | R2, R5, ADR-04 | T5 | Done |
 | T7 | Add the issue bookmark toggle so agents can save frequent issues they see often | ADR-02 | T6 | Not started |
 | T8 | Add a bookmarked-only filter and keep the filtered issue list synced with the issue bookmark state so agents can narrow the list to frequent issues | ADR-02 | T7 | Not started |
 | T9 | Update the top navigation branding to show "TSWizard" and the active agent's name while keeping the existing home, items, and about navigation pattern | — | T2 | Not started |

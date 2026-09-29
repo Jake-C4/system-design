@@ -106,6 +106,7 @@ const app = Vue.createApp({
             description: getRequiredValue(row, 'description', 'fixes.csv'),
             attempts,
             successes,
+            recentOutcome: null,
           });
         });
         itemsStore.error = '';
