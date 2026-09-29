@@ -19,6 +19,13 @@ export default {
       return `${getSuccessRate(fix).toFixed(0)}%`;
     };
 
+    const logOutcome = (fix, successful) => {
+      fix.attempts += 1;
+      if (successful) {
+        fix.successes += 1;
+      }
+    };
+
     const totalAttempts = Vue.computed(() => {
       return selectedItem.value?.fixes.reduce((total, fix) => total + fix.attempts, 0) ?? 0;
     });
@@ -46,6 +53,7 @@ export default {
       rankedFixes,
       hasEnoughData,
       formatSuccessRate,
+      logOutcome,
     };
   },
   template: /* html */ `
@@ -76,13 +84,27 @@ export default {
             v-for="(fix, index) in rankedFixes"
             :key="fix.id"
             class="list-group-item">
-            <div class="d-flex justify-content-between align-items-start gap-3">
+            <div class="d-flex flex-wrap justify-content-between align-items-start gap-3">
               <div>
                 <h2 class="h5 mb-2">Fix<span v-if="hasEnoughData"> {{ index + 1 }}</span></h2>
                 <p class="mb-2">{{ fix.description }}</p>
                 <p class="text-muted mb-0">
                   <strong>Attempts:</strong> {{ fix.attempts }}
                 </p>
+                <div class="d-flex flex-wrap gap-2 mt-3">
+                  <button
+                    type="button"
+                    class="btn btn-success"
+                    @click="logOutcome(fix, true)">
+                    Successful
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    @click="logOutcome(fix, false)">
+                    Unsuccessful
+                  </button>
+                </div>
               </div>
               <span class="badge text-bg-primary fs-6">
                 {{ formatSuccessRate(fix) }}
