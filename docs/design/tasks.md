@@ -7,7 +7,7 @@
 | ID | Task | Traces to (R# / ADR#) | Depends on | Status |
 |----|------|--------------------------|------------|--------|
 | T1 | Create placeholder `issues.csv` and `fixes.csv` files and update the existing data store to load both files, join them by issue, and keep the current `/items` and `/items/:id` route structure intact | ADR-01, R1 | — | Done |
-| T2 | Refactor the current collection page into the issue list view so each issue shows its name and searchable text without changing the app's overall route layout | R1 | T1 | Not started |
+| T2 | Refactor the current collection page into the issue list view so each issue shows its name and searchable text without changing the app's overall route layout | R1 | T1 | Done |
 | T3 | Update the detail page to load the selected issue and its related fixes, then display the fixes in ranked order with their attempt count and success rate | R1, R4 | T1 | Not started |
 | T4 | Add the "not enough data" state for issues with fewer than 5 logged outcomes while still showing the fix attempt count and the message when historical data is insufficient | R3, R4 | T3 | Not started |
 | T5 | Add the outcome logging UI for each fix and update the in-memory fix statistics immediately when an agent marks a result as successful or unsuccessful | R2, R4 | T3 | Not started |
