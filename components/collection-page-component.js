@@ -3,9 +3,13 @@ export default {
   setup() {
     const itemsStore = Vue.inject('itemsStore');
     const searchQuery = Vue.ref('');
+    const showBookmarkedOnly = Vue.ref(false);
     const filteredIssues = Vue.computed(() => {
       const query = searchQuery.value.trim().toLowerCase();
-      return itemsStore.items.filter((issue) => issue.name.toLowerCase().includes(query));
+      return itemsStore.items.filter((issue) => {
+        return issue.name.toLowerCase().includes(query)
+          && (!showBookmarkedOnly.value || issue.isBookmarked);
+      });
     });
     const toggleBookmark = (issue) => {
       issue.isBookmarked = !issue.isBookmarked;
@@ -14,6 +18,7 @@ export default {
     return {
       itemsStore,
       searchQuery,
+      showBookmarkedOnly,
       filteredIssues,
       toggleBookmark,
     };
@@ -48,8 +53,19 @@ export default {
           class="form-control mb-3"
           placeholder="Search Issues..." />
 
+        <div class="form-check mb-3">
+          <input
+            id="bookmarked-only"
+            v-model="showBookmarkedOnly"
+            class="form-check-input"
+            type="checkbox" />
+          <label class="form-check-label" for="bookmarked-only">
+            Show bookmarked only
+          </label>
+        </div>
+
         <div v-if="filteredIssues.length === 0" class="alert alert-light border" role="status">
-          No issues match your search.
+          {{ showBookmarkedOnly ? 'No bookmarked issues match your search.' : 'No issues match your search.' }}
         </div>
 
         <div v-else class="list-group">
