@@ -15,7 +15,7 @@
 | T7 | Add the issue bookmark toggle so agents can save frequent issues they see often | ADR-02 | T6 | Done |
 | T8 | Add a bookmarked-only filter and keep the filtered issue list synced with the issue bookmark state so agents can narrow the list to frequent issues | ADR-02 | T7 | Done |
 | T9 | Update the top navigation branding to show "TSWizard" and the active agent's name while keeping the existing home, items, and about navigation pattern | — | T2 | Done |
-| T10 | Replace the placeholder About page content with a short explanation of the app, its purpose, and the in-memory demo data warning | — | — | Not started |
+| T10 | Replace the placeholder About page content with a short explanation of the app, its purpose, and the in-memory demo data warning | — | — | Done |
 | T11 | Run a front-end verification pass covering issue search, detail ranking, not-enough-data handling, outcome logging, undo timing, bookmarking, and the About page content | R1-R5, ADR-01-04 | T1-T10 | Not started |
 
 **Status values:** Not started · In progress · Done · Blocked
