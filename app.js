@@ -75,6 +75,7 @@ const app = Vue.createApp({
           const issue = {
             id: getRequiredValue(row, 'id', 'issues.csv'),
             name: getRequiredValue(row, 'name', 'issues.csv'),
+            isBookmarked: false,
             fixes: [],
           };
           issuesById.set(issue.id, issue);

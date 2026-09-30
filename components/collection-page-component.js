@@ -7,11 +7,15 @@ export default {
       const query = searchQuery.value.trim().toLowerCase();
       return itemsStore.items.filter((issue) => issue.name.toLowerCase().includes(query));
     });
+    const toggleBookmark = (issue) => {
+      issue.isBookmarked = !issue.isBookmarked;
+    };
 
     return {
       itemsStore,
       searchQuery,
       filteredIssues,
+      toggleBookmark,
     };
   },
   template: /* html */ `
@@ -49,14 +53,25 @@ export default {
         </div>
 
         <div v-else class="list-group">
-          <router-link
+          <div
             v-for="issue in filteredIssues"
             :key="issue.id"
-            :to="'/items/' + issue.id"
-            class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-            <span>{{ issue.name }}</span>
-            <i class="bi bi-chevron-right" aria-hidden="true"></i>
-          </router-link>
+            class="list-group-item d-flex justify-content-between align-items-center gap-3 p-0">
+            <router-link
+              :to="'/items/' + issue.id"
+              class="list-group-item-action d-flex flex-grow-1 justify-content-between align-items-center gap-3 p-3 text-decoration-none text-body">
+              <span>{{ issue.name }}</span>
+              <i class="bi bi-chevron-right" aria-hidden="true"></i>
+            </router-link>
+            <button
+              type="button"
+              class="btn btn-secondary btn-sm me-3"
+              :aria-label="(issue.isBookmarked ? 'Remove bookmark from ' : 'Bookmark ') + issue.name"
+              :aria-pressed="issue.isBookmarked"
+              @click="toggleBookmark(issue)">
+              <i :class="issue.isBookmarked ? 'bi bi-bookmark-fill' : 'bi bi-bookmark'" aria-hidden="true"></i>
+            </button>
+          </div>
         </div>
       </div>
     </section>
